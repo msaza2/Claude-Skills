@@ -20,6 +20,22 @@ Write for a **smart reader who has NOT seen the source.** **Distill — don't tr
 - **Cut:** filler, tangents, repetition, throat-clearing, ads/sponsor breaks, minute-by-minute play-by-play, and anything a reader wouldn't remember tomorrow. A tight page that captures the substance beats a long one that mirrors the runtime.
 - For a **video/talk**: don't just timestamp everything — pull out the through-line and the few moments that carry it. (A short chapter list is fine; a transcript is not.)
 
+## Chunk it — no walls of text (second most important)
+
+Distilling is not enough — even distilled content reads as a blob if it's delivered as long flowing paragraphs. **Prose is for the through-line; structure is for the details.** The reader should be able to *scan* any section and get it; flowing paragraphs are the exception, not the default.
+
+**Hard density limits — treat these as lint rules:**
+
+- **A paragraph is at most 3 sentences / ~60 words.** If it runs longer, it contains more than one idea — split it or convert it to a component.
+- **The gist is a true summary, not the findings squeezed into prose.** At most 2–3 *short* paragraphs (~50 words each) giving the through-line. Per-topic verdicts, numbers, and qualifiers belong in their own sections — the gist links the story together, it doesn't carry the data.
+- **The "bolded label" test:** if you find yourself writing paragraphs that open with a bold topic label (`Hosting: …`, `Pricing: …`), that is a list wearing a paragraph costume. Convert it — one `.save-row` per topic (topic → one-line verdict), or `.info` cards, or `.stages`. The detail each paragraph was carrying moves into that topic's own section.
+- **At most ~2 numbers per sentence.** Three or more numbers in one breath means the content is a dataset, not prose — move it to `.vstats`, a table, or `.save-row`s, and keep only the headline figure in the sentence.
+- **At most one parenthetical or qualifier per sentence.** Stacked parentheses and em-dash asides are how walls of text form. Spin the qualifier into its own short sentence, a `.callout`, or a footnote-style gloss — or cut it.
+- **Bullets are 1–2 sentences.** A bullet with 3+ sentences and multiple bolded sub-points is a paragraph hiding in a list — split it into separate bullets or promote it to its own card.
+- **Callouts are ≤ ~50 words.** A callout is a sticky note, not a sidebar essay.
+
+**The squint test (run it before calling the page done):** scroll the page squinting so you can't read the words, only see the shapes. Every section should show visible *structure* — rows, cards, numbers, splits. Any screen-tall block of uniform gray text fails; restructure it.
+
 ## Ground it — and stay honest
 
 - **Work from the real source, never your assumptions.** For a **video**, use the **watch** skill — it gives you the transcript plus sampled frames; base everything on that. For an article/page, read or fetch it; for a file, read it.
@@ -47,7 +63,7 @@ The reader is sharp but **not** an expert in the subject's domain.
 
 **Always include (the core):**
 1. **Hero** — title + one plain sentence on what it is and why it's worth the time.
-2. **The gist** *(centerpiece)* — the flowing plain-English summary. Never skip it.
+2. **The gist** *(centerpiece)* — the plain-English through-line, 2–3 *short* paragraphs max. Never skip it; never let it swell into the whole report (see the chunking rules). If the subject has per-topic verdicts, follow the short prose with one `.save-row` per topic (topic → one-line verdict) instead of more paragraphs.
 3. **The main content** — the substance, broken into a few sections that fit (key points, the argument, chapters, the process…).
 
 **Then add only what genuinely applies** — and **invent sections freely**, named in the reader's terms. Common shapes: *Key points · How it works / The argument · Chapters or timeline · Examples & evidence · Pros & cons / trade-offs · Who it's for / when to use · Background & context · Notable quotes · Key numbers · Takeaways / what to do · Caveats & limits · Glossary · Sources.*
@@ -66,7 +82,7 @@ The reader is sharp but **not** an expert in the subject's domain.
 | Ordered points / steps / chapters | `.stages` (numbered rail) |
 | A set of parallel items (features, examples, who-it's-for) | `.info-grid` / `.info` cards |
 | Any two-sided split (pros/cons, do/don't, before/after, myth/fact) | `.keepskip` / `.ks` |
-| Paired rows (term → meaning, input → output, Q → A) | `.save-row` |
+| Paired rows (term → meaning, topic → verdict, Q → A) | `.save-row` |
 | Key numbers / evidence dashboard | `.verified` / `.vstats` |
 | A note, caveat, or pulled-out takeaway | `.callout` |
 | A set of sources / links / related items | `.sys-grid` / `.sys` |
@@ -78,7 +94,7 @@ The reader is sharp but **not** an expert in the subject's domain.
 1. **Get the source.** Video → run the **watch** skill (transcript + frames). Article/page → read or fetch it. File → read it. Concept with no single source → research it. Capture: the one-line purpose, the gist, the main points, examples/numbers/quotes worth keeping, the jargon list (term → plain meaning), and any caveats.
 2. **Distill to operator/reader altitude** — apply the altitude rule; cut the filler.
 3. **Generate the single HTML** — copy `template.html`, choose the sections that fit (table above), fill them, delete the rest, wire the TOC.
-4. **Verify before claiming done.** Confirm **no external requests** in the markup; open/preview it; check both themes (toggle) and the mobile collapse.
+4. **Verify before claiming done.** Confirm **no external requests** in the markup; open/preview it; check both themes (toggle) and the mobile collapse. Run the **squint test** and the density limits from the chunking section — any paragraph over ~60 words, any bolded-label paragraph train, any number-stuffed sentence gets restructured before you ship.
 
 ## Relationship to automation-to-html
 
@@ -89,6 +105,8 @@ The reader is sharp but **not** an expert in the subject's domain.
 ## Common mistakes
 
 - **Transcribing instead of distilling** — mirroring the runtime/length instead of surfacing the ideas. Cut hard.
+- **The gist as a wall of text** — multi-topic 100+ word paragraphs with bolded topic labels and 5+ numbers each, all inside one card. That's the report crammed into prose; the gist is the through-line, and the data lives in structured sections.
+- **Dense prose anywhere** — long paragraphs, 3-sentence bullets, sidebar-essay callouts. Apply the density limits; if a section fails the squint test, restructure it.
 - **Inventing** beyond the source, or stating sampled/uncertain detail as fact.
 - **Timestamp dumps** for videos instead of a real through-line.
 - Any **external dependency** (CDN, web font, remote image); hiding primary content behind JS.
