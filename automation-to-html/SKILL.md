@@ -130,13 +130,15 @@ html[data-theme="light"]{
 - **Navigation:** sticky left TOC with scroll-spy active state; smooth scroll; collapses under ~980px.
 - **Components:** cards with hairline borders + subtle shadows; a simple numbered step flow; inline stroke SVG icons (24×24, `currentColor`); reveal-on-scroll via IntersectionObserver (default-visible fallback).
 - **Type:** system sans stack for prose, system mono stack only where a real identifier genuinely helps.
+- **Hero scale guardrail:** keep the hero title at normal reading scale. Do not use viewport-scaled `h1` rules such as `vw`, `vh`, or `clamp()` for the hero title, and do not force a narrow title width such as `10ch`-`14ch`. If the title wraps into stacked billboard words, shorten the `<h1>` and move detail into the lede or chips. Desktop hero titles should sit around 40-46px, mobile around 32-34px.
+- **Visual QA gate:** before handing it off, look at the actual rendered page through Playwright, Chrome, the browser-control skill, or an equivalent real browser. Static HTML inspection is not enough. Check desktop and mobile viewports, light and dark themes, hero title size, TOC behavior, console errors, horizontal overflow, and whether the first screen looks normal. Use screenshots or measured DOM values from the actual rendered page. If no browser path is available, say visual QA was not run and do not claim the page looks normal.
 
 ## Build process
 
 1. **Explore the real system** — read the code and docs; for anything non-trivial, fan out parallel readers (the Workflow tool). Capture the **plain map**: the one-line purpose, the flowing summary, the big steps — then *whichever of these the workflow actually has*: how it authenticates, what it filters/decides, what it reads and produces, when it runs, how it's tested, the credentials it needs (named generally), the external systems, any verified run — **plus the jargon list (term → plain meaning).** Note anything important none of these capture; that becomes its own section.
 2. **Translate everything to operator altitude** — drop the internals per the altitude rule.
 3. **Generate the single HTML** following the visual system. Apply the audience + altitude rules to every line.
-4. **Verify before claiming done.** Preview it (preview MCP, or a tiny dependency-free Node static server) and screenshot **both dark and light**; check the responsive collapse; confirm **no external requests** in the markup.
+4. **Verify before claiming done.** Confirm **no external requests** in the markup; then perform the **Visual QA gate** in a real browser (Playwright, Chrome, browser-control, or equivalent) before handing it off. Check desktop and mobile, both themes, TOC anchors, console errors, horizontal overflow, and hero scale. Screenshot or record measured DOM values from the actual rendered page; if browser QA cannot run, say so plainly.
 
 ## Reference exemplar
 
@@ -150,4 +152,5 @@ The **`template.html` component kit** from the sibling `html-for-general` skill 
 - Leading with **architecture or config** instead of the plain summary.
 - Surfacing **validation/plumbing detail** ("Zod schema, URL/int/boolean checks") when the operator only needs "it requires a password."
 - **Forcing a sample section set** onto a workflow it doesn't fit — e.g. inventing a "keeps vs. skips" when nothing is filtered, or "how it signs in" when it touches nothing external. Let the workflow choose its sections; the core (hero + plain summary + how it works) is the only constant.
+- **Oversized hero titles** — never use viewport-scaled `h1` font sizes or very narrow `ch` widths that make the header dominate the page.
 - Inventing behavior; any external dependency (CDN, fonts, remote image); hiding primary content behind JS; leaving domain jargon unexplained.

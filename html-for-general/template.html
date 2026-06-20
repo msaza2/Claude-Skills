@@ -95,7 +95,8 @@ h2{font-size:27px;font-weight:680;margin-bottom:10px}
 
 /* ============== HERO + chips + stat strip ============== */
 .hero{padding-top:30px}
-.hero h1{font-size:44px;font-weight:720;margin-bottom:16px;background:linear-gradient(180deg,var(--text),color-mix(in srgb,var(--text) 62%,var(--muted)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* Keep fixed-size hero type. Do not convert this to viewport-scaled clamp/vw. */
+.hero h1{font-size:42px;font-weight:720;margin-bottom:16px;background:linear-gradient(180deg,var(--text),color-mix(in srgb,var(--text) 62%,var(--muted)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero-lede{font-size:18.5px;color:var(--muted);max-width:66ch;margin:0 0 24px}
 .hero-lede b{color:var(--text);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
@@ -229,7 +230,7 @@ footer code{color:var(--muted)}
   .sidebar{display:none}
   .grid-2,.keepskip,.info-grid,.sys-grid{grid-template-columns:1fr}
   .stat-strip,.vstats{grid-template-columns:repeat(2,1fr)}
-  .hero h1{font-size:34px}
+  .hero h1{font-size:33px}
   .vdetails{grid-template-columns:1fr}
 }
 @media(max-width:560px){

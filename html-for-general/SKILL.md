@@ -74,6 +74,10 @@ The reader is sharp but **not** an expert in the subject's domain.
 
 **Copy `template.html` from this skill's folder and fill it in.** It carries the calm palette (a warm cream "paper" theme as default + a warm-dark toggle, tuned for low-strain reading) and the full component kit, all self-contained. Keep its `<style>` and `<script>` verbatim; keep only the sections you need; update the `<title>`, brand, and TOC. Don't restyle — the calm look is the point.
 
+**Hero scale guardrail:** keep the hero title at the template's normal reading scale. Do not replace `.hero h1` with `vw`, `vh`, or `clamp()` font-size rules, and do not force a narrow hero title width such as `10ch`-`14ch`. If the title wraps into stacked billboard words, shorten the `<h1>` and move detail into the lede or chips. Desktop hero titles should stay around 40-46px, mobile around 32-34px, with the next content visible in a normal first viewport.
+
+**Visual QA gate:** before handing it off, look at the actual rendered page through Playwright, Chrome, the browser-control skill, or an equivalent real browser. Do not rely on static HTML inspection alone. Check desktop and mobile viewports, light and dark themes, hero title size, TOC behavior, console errors, horizontal overflow, and whether the first screen looks normal. Use screenshots or measured DOM values from the actual rendered page. If no browser path is available, say visual QA was not run and do not claim the page looks normal.
+
 **Pick the component that fits the content shape:**
 
 | Content shape | Component (class) |
@@ -94,7 +98,7 @@ The reader is sharp but **not** an expert in the subject's domain.
 1. **Get the source.** Video → run the **watch** skill (transcript + frames). Article/page → read or fetch it. File → read it. Concept with no single source → research it. Capture: the one-line purpose, the gist, the main points, examples/numbers/quotes worth keeping, the jargon list (term → plain meaning), and any caveats.
 2. **Distill to operator/reader altitude** — apply the altitude rule; cut the filler.
 3. **Generate the single HTML** — copy `template.html`, choose the sections that fit (table above), fill them, delete the rest, wire the TOC.
-4. **Verify before claiming done.** Confirm **no external requests** in the markup; open/preview it; check both themes (toggle) and the mobile collapse. Run the **squint test** and the density limits from the chunking section — any paragraph over ~60 words, any bolded-label paragraph train, any number-stuffed sentence gets restructured before you ship.
+4. **Verify before claiming done.** Confirm **no external requests** in the markup; then perform the **Visual QA gate** in a real browser (Playwright, Chrome, browser-control, or equivalent) before handing it off. Check desktop and mobile, both themes, TOC anchors, console errors, horizontal overflow, and hero scale. Run the **squint test** and the density limits from the chunking section — any paragraph over ~60 words, any bolded-label paragraph train, any number-stuffed sentence gets restructured before you ship.
 
 ## Relationship to automation-to-html
 
@@ -111,5 +115,6 @@ The reader is sharp but **not** an expert in the subject's domain.
 - **Timestamp dumps** for videos instead of a real through-line.
 - Any **external dependency** (CDN, web font, remote image); hiding primary content behind JS.
 - **Restyling** the kit or going low-contrast — keep the calm palette as shipped.
+- **Oversized hero titles** — never use viewport-scaled `h1` font sizes or very narrow `ch` widths that make the header dominate the page.
 - Leaving **domain jargon** unexplained.
 - Forcing a fixed section set — only the core (hero + gist + main content) is constant; everything else is by judgment.
